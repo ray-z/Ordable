@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oDV-X2-hIt" customClass="OrderCell" customModule="Ordable" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="332"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="303" height="332"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hG-jI-RDf">
+                        <rect key="frame" x="8" y="118" width="287" height="29"/>
+                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="25"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4R9-Ul-32A">
+                        <rect key="frame" x="111" y="251" width="82" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <state key="normal" title="Delivered">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="deliveredClicked:" destination="oDV-X2-hIt" eventType="touchUpInside" id="hTf-0j-wUf"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="RLt-th-Cy5">
+                        <rect key="frame" x="8" y="182" width="287" height="29"/>
+                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="25"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fQp-r3-2cs">
+                        <rect key="frame" x="8" y="54" width="287" height="29"/>
+                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="25"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="RLt-th-Cy5" secondAttribute="centerY" constant="-30" id="3fL-53-uhA"/>
+                <constraint firstItem="0hG-jI-RDf" firstAttribute="leading" secondItem="oDV-X2-hIt" secondAttribute="leading" constant="8" id="JV5-M0-JJO"/>
+                <constraint firstItem="RLt-th-Cy5" firstAttribute="top" secondItem="0hG-jI-RDf" secondAttribute="bottom" constant="35" id="Jrl-o5-1Ko"/>
+                <constraint firstAttribute="trailing" secondItem="fQp-r3-2cs" secondAttribute="trailing" constant="8" id="N4N-xK-610"/>
+                <constraint firstItem="RLt-th-Cy5" firstAttribute="leading" secondItem="oDV-X2-hIt" secondAttribute="leading" constant="8" id="WcJ-30-MBd"/>
+                <constraint firstAttribute="trailing" secondItem="0hG-jI-RDf" secondAttribute="trailing" constant="8" id="X7d-hk-cPW"/>
+                <constraint firstItem="fQp-r3-2cs" firstAttribute="leading" secondItem="oDV-X2-hIt" secondAttribute="leading" constant="8" id="Xfy-48-3ba"/>
+                <constraint firstItem="0hG-jI-RDf" firstAttribute="top" secondItem="fQp-r3-2cs" secondAttribute="bottom" constant="35" id="aNE-sk-pub"/>
+                <constraint firstItem="4R9-Ul-32A" firstAttribute="top" secondItem="RLt-th-Cy5" secondAttribute="bottom" constant="40" id="bui-Io-SC7"/>
+                <constraint firstAttribute="centerX" secondItem="4R9-Ul-32A" secondAttribute="centerX" id="hVM-f7-nVG"/>
+                <constraint firstItem="RLt-th-Cy5" firstAttribute="top" secondItem="0hG-jI-RDf" secondAttribute="bottom" constant="28" id="tNn-i7-hXL"/>
+                <constraint firstAttribute="trailing" secondItem="RLt-th-Cy5" secondAttribute="trailing" constant="8" id="xxK-rx-uam"/>
+            </constraints>
+            <size key="customSize" width="303" height="332"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tNn-i7-hXL"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="lblMethod" destination="RLt-th-Cy5" id="t60-TD-VOm"/>
+                <outlet property="lblName" destination="fQp-r3-2cs" id="kYU-Ps-75L"/>
+                <outlet property="lblTable" destination="0hG-jI-RDf" id="s0b-L3-LFU"/>
+            </connections>
+            <point key="canvasLocation" x="440.5" y="423"/>
+        </collectionViewCell>
+    </objects>
+</document>

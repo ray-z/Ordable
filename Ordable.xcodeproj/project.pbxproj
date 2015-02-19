@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		714926451A9619E500C00607 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714926441A9619E500C00607 /* OrderItem.swift */; };
+		714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 714926481A9642BD00C00607 /* MultipeerConnectivityService.m */; };
+		716F42A61A960E3F001829A6 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 716F42A51A960E3F001829A6 /* OrderCell.xib */; };
 		71AC64451A9394A2002E330A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64441A9394A2002E330A /* AppDelegate.swift */; };
-		71AC64471A9394A2002E330A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64461A9394A2002E330A /* ViewController.swift */; };
 		71AC644A1A9394A2002E330A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71AC64481A9394A2002E330A /* Main.storyboard */; };
 		71AC644C1A9394A2002E330A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71AC644B1A9394A2002E330A /* Images.xcassets */; };
 		71AC644F1A9394A2002E330A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71AC644D1A9394A2002E330A /* LaunchScreen.xib */; };
 		71AC645B1A9394A2002E330A /* OrdableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC645A1A9394A2002E330A /* OrdableTests.swift */; };
+		71AC64651A939853002E330A /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64641A939853002E330A /* OrderVC.swift */; };
+		71AC64691A939A3C002E330A /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64681A939A3C002E330A /* OrderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +30,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		714926441A9619E500C00607 /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderItem.swift; path = CustomModels/OrderItem.swift; sourceTree = "<group>"; };
+		714926471A9642BD00C00607 /* MultipeerConnectivityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultipeerConnectivityService.h; path = CustomClasses/Multipeer/MultipeerConnectivityService.h; sourceTree = "<group>"; };
+		714926481A9642BD00C00607 /* MultipeerConnectivityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultipeerConnectivityService.m; path = CustomClasses/Multipeer/MultipeerConnectivityService.m; sourceTree = "<group>"; };
+		7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordable-Bridging-Header.h"; sourceTree = "<group>"; };
+		716F42A51A960E3F001829A6 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		71AC643F1A9394A2002E330A /* Ordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ordable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64431A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AC64441A9394A2002E330A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71AC64461A9394A2002E330A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		71AC64491A9394A2002E330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71AC644B1A9394A2002E330A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		71AC644E1A9394A2002E330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		71AC64541A9394A2002E330A /* OrdableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrdableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64591A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AC645A1A9394A2002E330A /* OrdableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdableTests.swift; sourceTree = "<group>"; };
+		71AC64641A939853002E330A /* OrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
+		71AC64681A939A3C002E330A /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderCell.swift; path = CustomClasses/OrderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		714926461A9619EE00C00607 /* CustomModels */ = {
+			isa = PBXGroup;
+			children = (
+				714926441A9619E500C00607 /* OrderItem.swift */,
+			);
+			name = CustomModels;
+			sourceTree = "<group>";
+		};
+		7149264A1A9642C000C00607 /* Multipeer */ = {
+			isa = PBXGroup;
+			children = (
+				714926471A9642BD00C00607 /* MultipeerConnectivityService.h */,
+				714926481A9642BD00C00607 /* MultipeerConnectivityService.m */,
+			);
+			name = Multipeer;
+			sourceTree = "<group>";
+		};
 		71AC64361A9394A2002E330A = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +104,15 @@
 		71AC64411A9394A2002E330A /* Ordable */ = {
 			isa = PBXGroup;
 			children = (
-				71AC64441A9394A2002E330A /* AppDelegate.swift */,
-				71AC64461A9394A2002E330A /* ViewController.swift */,
 				71AC64481A9394A2002E330A /* Main.storyboard */,
+				71AC64441A9394A2002E330A /* AppDelegate.swift */,
+				71AC64641A939853002E330A /* OrderVC.swift */,
+				714926461A9619EE00C00607 /* CustomModels */,
+				71AC646A1A939A3F002E330A /* CustomClasses */,
 				71AC644B1A9394A2002E330A /* Images.xcassets */,
 				71AC644D1A9394A2002E330A /* LaunchScreen.xib */,
 				71AC64421A9394A2002E330A /* Supporting Files */,
+				7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */,
 			);
 			path = Ordable;
 			sourceTree = "<group>";
@@ -110,6 +140,16 @@
 				71AC64591A9394A2002E330A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71AC646A1A939A3F002E330A /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				7149264A1A9642C000C00607 /* Multipeer */,
+				71AC64681A939A3C002E330A /* OrderCell.swift */,
+				716F42A51A960E3F001829A6 /* OrderCell.xib */,
+			);
+			name = CustomClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +234,7 @@
 			files = (
 				71AC644A1A9394A2002E330A /* Main.storyboard in Resources */,
 				71AC644F1A9394A2002E330A /* LaunchScreen.xib in Resources */,
+				716F42A61A960E3F001829A6 /* OrderCell.xib in Resources */,
 				71AC644C1A9394A2002E330A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71AC64471A9394A2002E330A /* ViewController.swift in Sources */,
+				71AC64651A939853002E330A /* OrderVC.swift in Sources */,
+				714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */,
+				714926451A9619E500C00607 /* OrderItem.swift in Sources */,
+				71AC64691A939A3C002E330A /* OrderCell.swift in Sources */,
 				71AC64451A9394A2002E330A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +385,7 @@
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -351,6 +396,7 @@
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -407,6 +453,7 @@
 				71AC64601A9394A2002E330A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71AC64611A9394A2002E330A /* Build configuration list for PBXNativeTarget "OrdableTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +462,7 @@
 				71AC64631A9394A2002E330A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
