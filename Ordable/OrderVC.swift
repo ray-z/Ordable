@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-
-class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, MultipeerConnecivityServiceDelegate
+class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate
 {
-    let advertisedName = "Ordable-Server"
+    
     
     let OrderCellViewIdentifier = "OrderCell"
     var orderedItems = [OrderItem]()
-    // protocol
     
+    // P2P
+    let advertisedName = "Ordable-Server"
+    let advertiser: MCNearbyServiceAdvertiser?
+    let ServerPeerID = "Ordable-Server"
+    let partyTime: PLPartyTime = PLPartyTime(serviceType: "Ordable-Server")
     
     override func viewDidLoad()
     {
@@ -25,21 +29,21 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         self.collectionView?.scrollEnabled = false
         self.collectionView?.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.9, alpha: 1.0)
         
-        // fake item for testing
-        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, table: 1, method: "PayPal")
-        let i2 = OrderItem(name: "Cappuccino", quantity: 2, table: 1, method: "PayPal")
-        let i3 = OrderItem(name: "Latte", quantity: 1, table: 2, method: "PayPal")
-        let i4 = OrderItem(name: "Jasmine", quantity: 1, table: 4, method: "PayPal")
-        let i5 = OrderItem(name: "Chocolate Frappe", quantity: 1, table: 5, method: "PayPal")
-        let i6 = OrderItem(name: "Bacon Toastie", quantity: 1, table: 6, method: "PayPal")
-        let i7 = OrderItem(name: "Wild Berry", quantity: 1, table: 7, method: "PayPal")
-        orderedItems.append(i1)
-        orderedItems.append(i2)
-        orderedItems.append(i3)
-        orderedItems.append(i4)
-        orderedItems.append(i5)
-        orderedItems.append(i6)
-        orderedItems.append(i7)
+//        // fake item for testing
+//        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, size: "Small", customer: "Ray")
+//        let i2 = OrderItem(name: "Cappuccino", quantity: 2, size: "Medium", customer: "Tom")
+//        let i3 = OrderItem(name: "Latte", quantity: 1, size: "Medium", customer: "Alex")
+//        let i4 = OrderItem(name: "Jasmine Tea", quantity: 1, size: "Small", customer: "Nick")
+//        let i5 = OrderItem(name: "Chocolate Frappe", quantity: 1, size: "Large", customer: "Alice")
+//        let i6 = OrderItem(name: "Latte", quantity: 1, size: "Small", customer: "Bob")
+//        let i7 = OrderItem(name: "Green Tea", quantity: 1, size: "Small", customer: "Ray")
+//        orderedItems.append(i1)
+//        orderedItems.append(i2)
+//        orderedItems.append(i3)
+//        orderedItems.append(i4)
+//        orderedItems.append(i5)
+//        orderedItems.append(i6)
+//        orderedItems.append(i7)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -54,8 +58,16 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        MultipeerConnectivityService.sharedService().advertiseWithName(advertisedName)
-        MultipeerConnectivityService.sharedService().delegate = self
+        
+        self.partyTime.delegate = self;
+        partyTime.joinParty()
+        
+        //var sendFailedError: NSError?
+        //let serverPeerID = NSKeyedArchiver.archivedDataWithRootObject(partyTime.peerID)
+        //partyTime.sendData(serverPeerID, withMode: MCSessionSendDataMode.Reliable, error: &sendFailedError)
+        //self.advertiser.startAdvertisingPeer()
+//        MultipeerConnectivityService.sharedService().advertiseWithName(advertisedName)
+//        MultipeerConnectivityService.sharedService().delegate = self
 
     }
     
@@ -99,13 +111,47 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         showAlert(index!)
     }
     
-    // MultipeerConnecivityServiceDataReceptionDelegate Methods
-    func didReceiveData(data: NSData!, fromPeer peerId: MCPeerID!)
+    // PLPartyTimeDelegate
+    func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
     {
-        let orderItemInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
+        let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
+        
+        let table = orderInfo.valueForKey("table") as String
+        let name = orderInfo.valueForKey("name") as String
+        let itemsInfo = orderInfo.valueForKey("itemsInfo") as String
+        
+        let items = itemsInfo.componentsSeparatedByString("---")
+        for item in items
+        {
+            // to improve later
+            if(item != "")
+            {
+                let info = item.componentsSeparatedByString(":")
 
-        println(orderItemInfo)
+                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", customer: name)
+                self.orderedItems.append(item)
+            }
+        }
+        
+        self.collectionView?.reloadData()
+        
+        
     }
+    
+    func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!)
+    {
+        println("hello from server")
+    }
+    func partyTime(partyTime: PLPartyTime!, failedToJoinParty error: NSError!)
+    {
+        
+    }
+//    func didReceiveData(data: NSData!, fromPeer peerId: MCPeerID!)
+//    {
+//        let orderItemInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
+//
+//        println(orderItemInfo)
+//    }
     
     // Collection View Methods
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
@@ -123,8 +169,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(OrderCellViewIdentifier, forIndexPath: indexPath) as OrderCell
         cell.delegate = self
         let item = orderedItems[indexPath.row] as OrderItem
-        cell.setCellContents(item.name, quantity: item.quantity, table: item.table, method: item.method)
-
+//        cell.setCellContents(item.name, quantity: item.quantity, table: item.table, method: item.method)
+        cell.setCellContents(item.name, quantity: item.quantity, size: item.size, customer: item.customer)
         return cell
     }
     

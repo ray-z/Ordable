@@ -10,5 +10,6 @@
 #define Ordable_Ordable_Bridging_Header_h
 
 #import "MultipeerConnectivityService.h"
+#import "PLPartyTime.h"
 
 #endif

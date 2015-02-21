@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		714926451A9619E500C00607 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714926441A9619E500C00607 /* OrderItem.swift */; };
 		714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 714926481A9642BD00C00607 /* MultipeerConnectivityService.m */; };
+		714926521A964DD700C00607 /* PLPartyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 714926511A964DD700C00607 /* PLPartyTime.m */; };
 		716F42A61A960E3F001829A6 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 716F42A51A960E3F001829A6 /* OrderCell.xib */; };
 		71AC64451A9394A2002E330A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64441A9394A2002E330A /* AppDelegate.swift */; };
 		71AC644A1A9394A2002E330A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71AC64481A9394A2002E330A /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		714926471A9642BD00C00607 /* MultipeerConnectivityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultipeerConnectivityService.h; path = CustomClasses/Multipeer/MultipeerConnectivityService.h; sourceTree = "<group>"; };
 		714926481A9642BD00C00607 /* MultipeerConnectivityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultipeerConnectivityService.m; path = CustomClasses/Multipeer/MultipeerConnectivityService.m; sourceTree = "<group>"; };
 		7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordable-Bridging-Header.h"; sourceTree = "<group>"; };
+		714926501A964DD700C00607 /* PLPartyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPartyTime.h; path = CustomClasses/Multipeer/PLPartyTime.h; sourceTree = "<group>"; };
+		714926511A964DD700C00607 /* PLPartyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPartyTime.m; path = CustomClasses/Multipeer/PLPartyTime.m; sourceTree = "<group>"; };
 		716F42A51A960E3F001829A6 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		71AC643F1A9394A2002E330A /* Ordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ordable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64431A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 		7149264A1A9642C000C00607 /* Multipeer */ = {
 			isa = PBXGroup;
 			children = (
+				714926501A964DD700C00607 /* PLPartyTime.h */,
+				714926511A964DD700C00607 /* PLPartyTime.m */,
 				714926471A9642BD00C00607 /* MultipeerConnectivityService.h */,
 				714926481A9642BD00C00607 /* MultipeerConnectivityService.m */,
 			);
@@ -254,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71AC64651A939853002E330A /* OrderVC.swift in Sources */,
+				714926521A964DD700C00607 /* PLPartyTime.m in Sources */,
 				714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */,
 				714926451A9619E500C00607 /* OrderItem.swift in Sources */,
 				71AC64691A939A3C002E330A /* OrderCell.swift in Sources */,

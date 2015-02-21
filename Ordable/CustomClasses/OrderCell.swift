@@ -33,13 +33,20 @@ class OrderCell: UICollectionViewCell
         self.frame.size.width = screenSize.width * 0.3
     }
     
-    func setCellContents(name:String, quantity:Int, table:Int, method:String)
+//    func setCellContents(name:String, quantity:Int, table:Int, method:String)
+//    {
+//        lblName.text = "\(name)\t x\(quantity)"
+//        lblTable.text = "Table: \(table)"
+//        lblMethod.text = "Paied by: \(method)"
+//    }
+
+    func setCellContents(name:String, quantity:Int, size:String, customer:String)
     {
         lblName.text = "\(name)\t x\(quantity)"
-        lblTable.text = "Table: \(table)"
-        lblMethod.text = "Paied by: \(method)"
+        lblTable.text = "Size: \(size)"
+        lblMethod.text = "Name: \(customer)"
     }
-
+    
     @IBAction func deliveredClicked(sender: AnyObject)
     {
         delegate?.itemDelivered(self)
