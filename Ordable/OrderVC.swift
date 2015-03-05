@@ -15,6 +15,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     let OrderCellViewIdentifier = "OrderCell"
     var orderedItems = [OrderItem]()
+    var orderedItemsPeerID = [MCPeerID]()
     
     // P2P
     let advertisedName = "Ordable-Server"
@@ -100,7 +101,13 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     func updateOrderedItems(index:Int)
     {
-        orderedItems.removeAtIndex(index)
+        var Error: NSError?
+        let data = NSKeyedArchiver.archivedDataWithRootObject("Your food is ready.")
+        self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
+        println("Sending msg to: \(self.orderedItemsPeerID[index])")
+        
+        self.orderedItems.removeAtIndex(index)
+        self.orderedItemsPeerID.removeAtIndex(index)
         self.collectionView?.reloadData()
     }
     
@@ -130,6 +137,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
 
                 let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", customer: name)
                 self.orderedItems.append(item)
+                self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
             }
         }
         
