@@ -84,7 +84,6 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         // buttons
         let yesAction = UIAlertAction(title: "Yes",
             style: .Default) { (action: UIAlertAction!) -> Void in
-
                 self.updateOrderedItems(index)
         }
 
