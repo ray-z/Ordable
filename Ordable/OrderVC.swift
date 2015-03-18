@@ -9,7 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 
-class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate
+class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, AddItemDelegate//, PLPartyTimeDelegate
 {
     
     
@@ -17,11 +17,13 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     var orderedItems = [OrderItem]()
     var orderedItemsPeerID = [MCPeerID]()
     
-    // P2P
-    let advertisedName = "Ordable-Server"
-    let advertiser: MCNearbyServiceAdvertiser?
-    let ServerPeerID = "Ordable-Server"
-    let partyTime: PLPartyTime = PLPartyTime(serviceType: "Ordable-Server")
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+//    // P2P
+//    let advertisedName = "Ordable-Server"
+//    let advertiser: MCNearbyServiceAdvertiser?
+//    let ServerPeerID = "Ordable-Server"
+//    let partyTime: PLPartyTime = PLPartyTime(serviceType: "Ordable-Server")
     
     override func viewDidLoad()
     {
@@ -29,6 +31,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView?.scrollEnabled = false
         self.collectionView?.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.9, alpha: 1.0)
+        appDelegate.addItemDelegate = self
         
 //        // fake item for testing
 //        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, size: "Small", customer: "Ray")
@@ -60,8 +63,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         super.viewDidAppear(animated)
         
-        self.partyTime.delegate = self;
-        partyTime.joinParty()
+//        self.partyTime.delegate = self;
+//        partyTime.joinParty()
         
         //var sendFailedError: NSError?
         //let serverPeerID = NSKeyedArchiver.archivedDataWithRootObject(partyTime.peerID)
@@ -102,7 +105,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         var Error: NSError?
         let data = NSKeyedArchiver.archivedDataWithRootObject("Your food is ready.")
-        self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
+        self.appDelegate.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
         println("Sending msg to: \(self.orderedItemsPeerID[index])")
         
         self.orderedItems.removeAtIndex(index)
@@ -117,42 +120,51 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         showAlert(index!)
     }
     
-    // PLPartyTimeDelegate
-    func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
+    func addItem(item: OrderItem, peerID: MCPeerID)
     {
-        let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
-        
-        let table = orderInfo.valueForKey("table") as String
-        let name = orderInfo.valueForKey("name") as String
-        let itemsInfo = orderInfo.valueForKey("itemsInfo") as String
-        
-        let items = itemsInfo.componentsSeparatedByString("---")
-        for item in items
-        {
-            // to improve later
-            if(item != "")
-            {
-                let info = item.componentsSeparatedByString(":")
 
-                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", table:table.toInt()!, customer: name)
-                self.orderedItems.append(item)
-                self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
-            }
-        }
+        self.orderedItems.append(item)
+        self.orderedItemsPeerID.append(peerID)
         
         self.collectionView?.reloadData()
-        
-        
     }
     
-    func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!)
-    {
-        println("hello from server")
-    }
-    func partyTime(partyTime: PLPartyTime!, failedToJoinParty error: NSError!)
-    {
-        
-    }
+//    // PLPartyTimeDelegate
+//    func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
+//    {
+//        let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
+//        
+//        let table = orderInfo.valueForKey("table") as String
+//        let name = orderInfo.valueForKey("name") as String
+//        let itemsInfo = orderInfo.valueForKey("itemsInfo") as String
+//        
+//        let items = itemsInfo.componentsSeparatedByString("---")
+//        for item in items
+//        {
+//            // to improve later
+//            if(item != "")
+//            {
+//                let info = item.componentsSeparatedByString(":")
+//
+//                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", table:table.toInt()!, customer: name)
+//                self.orderedItems.append(item)
+//                self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
+//            }
+//        }
+//        
+//        self.collectionView?.reloadData()
+//        
+//        
+//    }
+//    
+//    func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!)
+//    {
+//        println("hello from server")
+//    }
+//    func partyTime(partyTime: PLPartyTime!, failedToJoinParty error: NSError!)
+//    {
+//        
+//    }
 //    func didReceiveData(data: NSData!, fromPeer peerId: MCPeerID!)
 //    {
 //        let orderItemInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
