@@ -40,10 +40,10 @@ class OrderCell: UICollectionViewCell
 //        lblMethod.text = "Paied by: \(method)"
 //    }
 
-    func setCellContents(name:String, quantity:Int, size:String, customer:String)
+    func setCellContents(name:String, quantity:Int, size:String, table:Int, customer:String)
     {
         lblName.text = "\(name)\t x\(quantity)"
-        lblTable.text = "Size: \(size)"
+        lblTable.text = "Table: \(table)"
         lblMethod.text = "Name: \(customer)"
     }
     

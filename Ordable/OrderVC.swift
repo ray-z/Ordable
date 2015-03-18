@@ -134,7 +134,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
             {
                 let info = item.componentsSeparatedByString(":")
 
-                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", customer: name)
+                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", table:table.toInt()!, customer: name)
                 self.orderedItems.append(item)
                 self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
             }
@@ -177,7 +177,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         cell.delegate = self
         let item = orderedItems[indexPath.row] as OrderItem
 //        cell.setCellContents(item.name, quantity: item.quantity, table: item.table, method: item.method)
-        cell.setCellContents(item.name, quantity: item.quantity, size: item.size, customer: item.customer)
+        cell.setCellContents(item.name, quantity: item.quantity, size: item.size, table: item.table, customer: item.customer)
         return cell
     }
     

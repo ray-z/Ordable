@@ -26,12 +26,13 @@ class OrderItem: NSObject
 //        self.method = method
 //    }
 
-    init(name:String, quantity:Int, size:String, customer:String)
+    init(name:String, quantity:Int, size:String, table:Int, customer:String)
     {
         super.init()
         self.name = name
         self.quantity = quantity
         self.size = size
+        self.table = table
         self.customer = customer
     }
     
