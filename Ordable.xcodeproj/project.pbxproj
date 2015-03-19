@@ -10,6 +10,7 @@
 		714926451A9619E500C00607 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714926441A9619E500C00607 /* OrderItem.swift */; };
 		714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 714926481A9642BD00C00607 /* MultipeerConnectivityService.m */; };
 		714926521A964DD700C00607 /* PLPartyTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 714926511A964DD700C00607 /* PLPartyTime.m */; };
+		71499EC11ABAC4EB0098CF51 /* notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71499EC01ABAC4EB0098CF51 /* notification.mp3 */; };
 		716F42A61A960E3F001829A6 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 716F42A51A960E3F001829A6 /* OrderCell.xib */; };
 		71AC64451A9394A2002E330A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64441A9394A2002E330A /* AppDelegate.swift */; };
 		71AC644A1A9394A2002E330A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71AC64481A9394A2002E330A /* Main.storyboard */; };
@@ -37,8 +38,9 @@
 		7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ordable-Bridging-Header.h"; sourceTree = "<group>"; };
 		714926501A964DD700C00607 /* PLPartyTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPartyTime.h; path = CustomClasses/Multipeer/PLPartyTime.h; sourceTree = "<group>"; };
 		714926511A964DD700C00607 /* PLPartyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPartyTime.m; path = CustomClasses/Multipeer/PLPartyTime.m; sourceTree = "<group>"; };
+		71499EC01ABAC4EB0098CF51 /* notification.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = notification.mp3; path = Sounds/notification.mp3; sourceTree = "<group>"; };
 		716F42A51A960E3F001829A6 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
-		71AC643F1A9394A2002E330A /* Ordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ordable.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71AC643F1A9394A2002E330A /* Ordable-Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ordable-Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64431A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AC64441A9394A2002E330A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71AC64491A9394A2002E330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 			name = Multipeer;
 			sourceTree = "<group>";
 		};
+		71499EC21ABAC4F10098CF51 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				71499EC01ABAC4EB0098CF51 /* notification.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		71AC64361A9394A2002E330A = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +110,7 @@
 		71AC64401A9394A2002E330A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				71AC643F1A9394A2002E330A /* Ordable.app */,
+				71AC643F1A9394A2002E330A /* Ordable-Server.app */,
 				71AC64541A9394A2002E330A /* OrdableTests.xctest */,
 			);
 			name = Products;
@@ -117,6 +127,7 @@
 				71AC644B1A9394A2002E330A /* Images.xcassets */,
 				71AC644D1A9394A2002E330A /* LaunchScreen.xib */,
 				71AC64421A9394A2002E330A /* Supporting Files */,
+				71499EC21ABAC4F10098CF51 /* Sounds */,
 				7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */,
 			);
 			path = Ordable;
@@ -174,7 +185,7 @@
 			);
 			name = Ordable;
 			productName = Ordable;
-			productReference = 71AC643F1A9394A2002E330A /* Ordable.app */;
+			productReference = 71AC643F1A9394A2002E330A /* Ordable-Server.app */;
 			productType = "com.apple.product-type.application";
 		};
 		71AC64531A9394A2002E330A /* OrdableTests */ = {
@@ -206,6 +217,7 @@
 				TargetAttributes = {
 					71AC643E1A9394A2002E330A = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 937LC8523N;
 					};
 					71AC64531A9394A2002E330A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -237,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71499EC11ABAC4EB0098CF51 /* notification.mp3 in Resources */,
 				71AC644A1A9394A2002E330A /* Main.storyboard in Resources */,
 				71AC644F1A9394A2002E330A /* LaunchScreen.xib in Resources */,
 				716F42A61A960E3F001829A6 /* OrderCell.xib in Resources */,
@@ -388,9 +401,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ordable-Server";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
 			name = Debug;
@@ -399,9 +415,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ordable-Server";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
 			name = Release;

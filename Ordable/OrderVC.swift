@@ -8,6 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
+import AVFoundation
 
 class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate
 {
@@ -23,12 +24,22 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     let ServerPeerID = "Ordable-Server"
     let partyTime: PLPartyTime = PLPartyTime(serviceType: "Ordable-Server")
     
+    
+    // notification sound
+    var audioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView?.scrollEnabled = false
         self.collectionView?.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.9, alpha: 1.0)
+        
+        // audio
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("notification", ofType: "mp3")!)
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+        
         
 //        // fake item for testing
 //        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, size: "Small", customer: "Ray")
@@ -100,10 +111,10 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     func updateOrderedItems(index:Int)
     {
-        var Error: NSError?
-        let data = NSKeyedArchiver.archivedDataWithRootObject("Your food is ready.")
-        self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
-        println("Sending msg to: \(self.orderedItemsPeerID[index])")
+//        var Error: NSError?
+//        let data = NSKeyedArchiver.archivedDataWithRootObject("Your food is ready.")
+//        self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
+//        println("Sending msg to: \(self.orderedItemsPeerID[index])")
         
         self.orderedItems.removeAtIndex(index)
         self.orderedItemsPeerID.removeAtIndex(index)
@@ -120,6 +131,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     // PLPartyTimeDelegate
     func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
     {
+        println("Getting data from \(peerID)")
+        
         let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
         
         let table = orderInfo.valueForKey("table") as String
@@ -141,14 +154,18 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         }
         
         self.collectionView?.reloadData()
-        
+        audioPlayer.play()
         
     }
     
     func partyTime(partyTime: PLPartyTime!, peer: MCPeerID!, changedState state: MCSessionState, currentPeers: [AnyObject]!)
     {
-        println("hello from server")
+        if(state == MCSessionState.Connected)
+        {
+            println("\(peer) is connected.")
+        }
     }
+
     func partyTime(partyTime: PLPartyTime!, failedToJoinParty error: NSError!)
     {
         

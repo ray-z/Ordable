@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "71AC643E1A9394A2002E330A"
-               BuildableName = "Ordable.app"
+               BuildableName = "Ordable-Server.app"
                BlueprintName = "Ordable"
                ReferencedContainer = "container:Ordable.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "71AC643E1A9394A2002E330A"
-            BuildableName = "Ordable.app"
+            BuildableName = "Ordable-Server.app"
             BlueprintName = "Ordable"
             ReferencedContainer = "container:Ordable.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "71AC643E1A9394A2002E330A"
-            BuildableName = "Ordable.app"
+            BuildableName = "Ordable-Server.app"
             BlueprintName = "Ordable"
             ReferencedContainer = "container:Ordable.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "71AC643E1A9394A2002E330A"
-            BuildableName = "Ordable.app"
+            BuildableName = "Ordable-Server.app"
             BlueprintName = "Ordable"
             ReferencedContainer = "container:Ordable.xcodeproj">
          </BuildableReference>
