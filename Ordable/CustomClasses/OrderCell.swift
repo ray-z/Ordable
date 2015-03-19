@@ -11,6 +11,7 @@ import UIKit
 protocol OrderCellDelegate
 {
     func itemDelivered(cell:OrderCell)
+    func sendNotification(cell:OrderCell)
 }
 
 class OrderCell: UICollectionViewCell
@@ -50,6 +51,11 @@ class OrderCell: UICollectionViewCell
     @IBAction func deliveredClicked(sender: AnyObject)
     {
         delegate?.itemDelivered(self)
+    }
+    
+    @IBAction func sendNotificationClicked(sender: AnyObject)
+    {
+        delegate?.sendNotification(self)
     }
     
 

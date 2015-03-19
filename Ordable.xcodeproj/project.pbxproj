@@ -19,6 +19,7 @@
 		71AC645B1A9394A2002E330A /* OrdableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC645A1A9394A2002E330A /* OrdableTests.swift */; };
 		71AC64651A939853002E330A /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64641A939853002E330A /* OrderVC.swift */; };
 		71AC64691A939A3C002E330A /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64681A939A3C002E330A /* OrderCell.swift */; };
+		71F5D8DD1ABB07E700C8A1B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		71AC645A1A9394A2002E330A /* OrdableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdableTests.swift; sourceTree = "<group>"; };
 		71AC64641A939853002E330A /* OrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 		71AC64681A939A3C002E330A /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderCell.swift; path = CustomClasses/OrderCell.swift; sourceTree = "<group>"; };
+		71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				71AC64481A9394A2002E330A /* Main.storyboard */,
+				71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */,
 				71AC64441A9394A2002E330A /* AppDelegate.swift */,
 				71AC64641A939853002E330A /* OrderVC.swift */,
 				714926461A9619EE00C00607 /* CustomModels */,
@@ -275,6 +278,7 @@
 				714926521A964DD700C00607 /* PLPartyTime.m in Sources */,
 				714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */,
 				714926451A9619E500C00607 /* OrderItem.swift in Sources */,
+				71F5D8DD1ABB07E700C8A1B1 /* Constants.swift in Sources */,
 				71AC64691A939A3C002E330A /* OrderCell.swift in Sources */,
 				71AC64451A9394A2002E330A /* AppDelegate.swift in Sources */,
 			);

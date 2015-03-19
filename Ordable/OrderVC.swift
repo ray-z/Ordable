@@ -10,13 +10,16 @@ import UIKit
 import MultipeerConnectivity
 import AVFoundation
 
-class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate
+class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate, MainDelegate
 {
     
     
     let OrderCellViewIdentifier = "OrderCell"
     var orderedItems = [OrderItem]()
     var orderedItemsPeerID = [MCPeerID]()
+
+    var totalAmount = 0.00
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     // P2P
     let advertisedName = "Ordable-Server"
@@ -28,6 +31,10 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     // notification sound
     var audioPlayer = AVAudioPlayer()
     
+    // UI
+    @IBOutlet weak var btnTotalAmount: UIBarButtonItem!
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -35,11 +42,16 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         self.collectionView?.scrollEnabled = false
         self.collectionView?.backgroundColor = UIColor(red: 0.3, green: 0.8, blue: 0.9, alpha: 1.0)
         
+        
+        
         // audio
         var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("notification", ofType: "mp3")!)
         var error:NSError?
         audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
         
+        // total amount button
+        btnTotalAmount.tintColor = UIColor.blackColor()
+        //btnTotalAmount.enabled = false
         
 //        // fake item for testing
 //        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, size: "Small", customer: "Ray")
@@ -71,8 +83,15 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         super.viewDidAppear(animated)
         
+        self.appDelegate.orderVCDelegate = self
+        readTotalAmount()
+        
+        
+        // p2p
         self.partyTime.delegate = self;
         partyTime.joinParty()
+        
+        
         
         //var sendFailedError: NSError?
         //let serverPeerID = NSKeyedArchiver.archivedDataWithRootObject(partyTime.peerID)
@@ -86,6 +105,35 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // show message
+    func showMsg(title: String, msg: String)
+    {
+        let alertController = UIAlertController(title: title, message: msg,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func refreshAmount(oldAmount:Double, date:String)
+    {
+        readTotalAmount()
+        
+        showMsg("Reset Sales", msg: "Total amount for \(date): \n£\(oldAmount)")
+    }
+    
+    
+    func readTotalAmount()
+    {
+        // read total amount
+        self.totalAmount = NSUserDefaults.standardUserDefaults().valueForKey(KeyTotalAmount) as Double
+        updateBtnTotalAmount()
+    }
+    
+    func updateBtnTotalAmount()
+    {
+        btnTotalAmount.title = "Total: £\(self.totalAmount)"
     }
     
     func showAlert(index:Int)
@@ -128,6 +176,15 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         showAlert(index!)
     }
     
+    func sendNotification(cell:OrderCell)
+    {
+        let index = self.collectionView?.indexPathForCell(cell)?.row
+        var Error: NSError?
+        let data = NSKeyedArchiver.archivedDataWithRootObject(BusyMsg)
+        self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index!]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
+        println("Sending msg to: \(self.orderedItemsPeerID[index!])")
+    }
+    
     // PLPartyTimeDelegate
     func partyTime(partyTime: PLPartyTime!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
     {
@@ -138,6 +195,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         let table = orderInfo.valueForKey("table") as String
         let name = orderInfo.valueForKey("name") as String
         let itemsInfo = orderInfo.valueForKey("itemsInfo") as String
+        let amount = (orderInfo.valueForKey("amount") as NSString).doubleValue
         
         let items = itemsInfo.componentsSeparatedByString("---")
         for item in items
@@ -155,6 +213,14 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         
         self.collectionView?.reloadData()
         audioPlayer.play()
+        self.totalAmount += amount
+        
+        // save amount
+        NSUserDefaults.standardUserDefaults().setDouble(self.totalAmount, forKey: KeyTotalAmount)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        updateBtnTotalAmount()
+//        println(orderInfo.valueForKey("amount") as String)
         
     }
     
