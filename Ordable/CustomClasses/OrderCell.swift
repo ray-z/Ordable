@@ -19,7 +19,7 @@ class OrderCell: UICollectionViewCell
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblTable: UILabel!
-    @IBOutlet weak var lblMethod: UILabel!
+    @IBOutlet weak var lblInfo: UILabel!
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var delegate: OrderCellDelegate?
@@ -41,11 +41,11 @@ class OrderCell: UICollectionViewCell
 //        lblMethod.text = "Paied by: \(method)"
 //    }
 
-    func setCellContents(name:String, quantity:Int, size:String, table:Int, customer:String)
+    func setCellContents(name:String, table:Int, customer:String, info:String)
     {
-        lblName.text = "\(name)\t x\(quantity)"
-        lblTable.text = "Table: \(table)"
-        lblMethod.text = "Name: \(customer)"
+        lblName.text = "\(name)"
+        lblTable.text = "Table \(table), \(customer)"
+        lblInfo.text = info
     }
     
     @IBAction func deliveredClicked(sender: AnyObject)

@@ -13,3 +13,6 @@ let KeyTotalAmount = "TotalAmount"
 let KeyDate = "Date"
 
 let BusyMsg = "Your food is ready, please collect at the till."
+
+let CommissionRate = 0.05   // 5%
+let CommissionFix = 0.05    // 5p

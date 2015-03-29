@@ -11,11 +11,12 @@ import Foundation
 class OrderItem: NSObject
 {
     var name: String = ""
-    var quantity: Int = 0
+//    var quantity: Int = 0
     var table: Int = 0
-    var method: String = ""
-    var size: String = ""
+//    var method: String = ""
+//    var size: String = ""
     var customer: String = ""
+    var info: String = ""
     
 //    init(name:String, quantity:Int, table:Int, method:String)
 //    {
@@ -26,14 +27,15 @@ class OrderItem: NSObject
 //        self.method = method
 //    }
 
-    init(name:String, quantity:Int, size:String, table:Int, customer:String)
+    init(name:String, table:Int, customer:String, info:String)
     {
         super.init()
         self.name = name
-        self.quantity = quantity
-        self.size = size
+//        self.quantity = quantity
+//        self.size = size
         self.table = table
         self.customer = customer
+        self.info = info
     }
     
 }

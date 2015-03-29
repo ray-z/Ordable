@@ -19,6 +19,9 @@
 		71AC645B1A9394A2002E330A /* OrdableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC645A1A9394A2002E330A /* OrdableTests.swift */; };
 		71AC64651A939853002E330A /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64641A939853002E330A /* OrderVC.swift */; };
 		71AC64691A939A3C002E330A /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC64681A939A3C002E330A /* OrderCell.swift */; };
+		71C0A7D81AC8216E00733ED4 /* SalesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0A7D71AC8216E00733ED4 /* SalesVC.swift */; };
+		71C0A7DC1AC821A200733ED4 /* Sale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0A7D91AC821A200733ED4 /* Sale.swift */; };
+		71C0A7DD1AC821A200733ED4 /* Sales.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71C0A7DA1AC821A200733ED4 /* Sales.xcdatamodeld */; };
 		71F5D8DD1ABB07E700C8A1B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +44,7 @@
 		714926511A964DD700C00607 /* PLPartyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPartyTime.m; path = CustomClasses/Multipeer/PLPartyTime.m; sourceTree = "<group>"; };
 		71499EC01ABAC4EB0098CF51 /* notification.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = notification.mp3; path = Sounds/notification.mp3; sourceTree = "<group>"; };
 		716F42A51A960E3F001829A6 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
-		71AC643F1A9394A2002E330A /* Ordable-Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ordable-Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71AC643F1A9394A2002E330A /* Ordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ordable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64431A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AC64441A9394A2002E330A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71AC64491A9394A2002E330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +55,9 @@
 		71AC645A1A9394A2002E330A /* OrdableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdableTests.swift; sourceTree = "<group>"; };
 		71AC64641A939853002E330A /* OrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 		71AC64681A939A3C002E330A /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderCell.swift; path = CustomClasses/OrderCell.swift; sourceTree = "<group>"; };
+		71C0A7D71AC8216E00733ED4 /* SalesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalesVC.swift; sourceTree = "<group>"; };
+		71C0A7D91AC821A200733ED4 /* Sale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sale.swift; path = CoreData/Sale.swift; sourceTree = "<group>"; };
+		71C0A7DB1AC821A200733ED4 /* Sales.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sales.xcdatamodel; sourceTree = "<group>"; };
 		71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +118,7 @@
 		71AC64401A9394A2002E330A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				71AC643F1A9394A2002E330A /* Ordable-Server.app */,
+				71AC643F1A9394A2002E330A /* Ordable.app */,
 				71AC64541A9394A2002E330A /* OrdableTests.xctest */,
 			);
 			name = Products;
@@ -125,10 +131,12 @@
 				71F5D8DC1ABB07E700C8A1B1 /* Constants.swift */,
 				71AC64441A9394A2002E330A /* AppDelegate.swift */,
 				71AC64641A939853002E330A /* OrderVC.swift */,
+				71C0A7D71AC8216E00733ED4 /* SalesVC.swift */,
 				714926461A9619EE00C00607 /* CustomModels */,
 				71AC646A1A939A3F002E330A /* CustomClasses */,
 				71AC644B1A9394A2002E330A /* Images.xcassets */,
 				71AC644D1A9394A2002E330A /* LaunchScreen.xib */,
+				71C0A7DE1AC821AD00733ED4 /* CoreData */,
 				71AC64421A9394A2002E330A /* Supporting Files */,
 				71499EC21ABAC4F10098CF51 /* Sounds */,
 				7149264B1A96432000C00607 /* Ordable-Bridging-Header.h */,
@@ -171,6 +179,15 @@
 			name = CustomClasses;
 			sourceTree = "<group>";
 		};
+		71C0A7DE1AC821AD00733ED4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				71C0A7D91AC821A200733ED4 /* Sale.swift */,
+				71C0A7DA1AC821A200733ED4 /* Sales.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,7 +205,7 @@
 			);
 			name = Ordable;
 			productName = Ordable;
-			productReference = 71AC643F1A9394A2002E330A /* Ordable-Server.app */;
+			productReference = 71AC643F1A9394A2002E330A /* Ordable.app */;
 			productType = "com.apple.product-type.application";
 		};
 		71AC64531A9394A2002E330A /* OrdableTests */ = {
@@ -274,7 +291,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C0A7DD1AC821A200733ED4 /* Sales.xcdatamodeld in Sources */,
 				71AC64651A939853002E330A /* OrderVC.swift in Sources */,
+				71C0A7DC1AC821A200733ED4 /* Sale.swift in Sources */,
+				71C0A7D81AC8216E00733ED4 /* SalesVC.swift in Sources */,
 				714926521A964DD700C00607 /* PLPartyTime.m in Sources */,
 				714926491A9642BD00C00607 /* MultipeerConnectivityService.m in Sources */,
 				714926451A9619E500C00607 /* OrderItem.swift in Sources */,
@@ -409,7 +429,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Ordable-Server";
+				PRODUCT_NAME = Ordable;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
@@ -423,7 +443,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Ordable-Server";
+				PRODUCT_NAME = Ordable;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
@@ -494,6 +514,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71C0A7DA1AC821A200733ED4 /* Sales.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71C0A7DB1AC821A200733ED4 /* Sales.xcdatamodel */,
+			);
+			currentVersion = 71C0A7DB1AC821A200733ED4 /* Sales.xcdatamodel */;
+			name = Sales.xcdatamodeld;
+			path = CoreData/Sales.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 71AC64371A9394A2002E330A /* Project object */;
 }

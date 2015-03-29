@@ -9,6 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 import AVFoundation
+import CoreData
 
 class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, OrderCellDelegate, PLPartyTimeDelegate, MainDelegate
 {
@@ -34,6 +35,10 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     // UI
     @IBOutlet weak var btnTotalAmount: UIBarButtonItem!
     
+    // core data
+    var managedContext: NSManagedObjectContext?
+    var fetchRequest: NSFetchRequest?
+    var error: NSError?
     
     override func viewDidLoad()
     {
@@ -77,6 +82,12 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         let orderCellNib = UINib(nibName: "OrderCell", bundle: nil)
         self.collectionView?.registerNib(orderCellNib, forCellWithReuseIdentifier: OrderCellViewIdentifier)
         
+        // init core data
+        managedContext = self.appDelegate.managedObjectContext
+        fetchRequest = NSFetchRequest(entityName:"Sale")
+        fetchRequest?.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
+        fetchData()
     }
     
     override func viewDidAppear(animated: Bool)
@@ -118,6 +129,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     func refreshAmount(oldAmount:Double, date:String)
     {
+        saveAmount(oldAmount, date: date)
         readTotalAmount()
         
         showMsg("Reset Sales", msg: "Total amount for \(date): \n£\(oldAmount)")
@@ -133,7 +145,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     func updateBtnTotalAmount()
     {
-        btnTotalAmount.title = "Total: £\(self.totalAmount)"
+        btnTotalAmount.title = NSString(format:"Total: £ %.2f", self.totalAmount)
     }
     
     func showAlert(index:Int)
@@ -156,6 +168,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         presentViewController(alert, animated: true, completion: nil)
     }
     
+
     
     func updateOrderedItems(index:Int)
     {
@@ -167,6 +180,59 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         self.orderedItems.removeAtIndex(index)
         self.orderedItemsPeerID.removeAtIndex(index)
         self.collectionView?.reloadData()
+    }
+    
+    // validate price
+    func validatePrice(price: Double) -> Double
+    {
+        var newPriceStr = NSString(format:"%.2f", price)
+        return newPriceStr.doubleValue
+    }
+    
+    // Core data
+    func saveAmount(amount:Double, date:String)
+    {
+        let entity =  NSEntityDescription.entityForName("Sale", inManagedObjectContext: self.managedContext!)
+        
+        let newSale = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext) as Sale
+        newSale.amount = amount
+        newSale.date = date
+        
+        if !managedContext!.save(&error)
+        {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+        
+        
+    }
+    
+    func fetchData() -> [NSManagedObject]
+    {
+//        var sales = [NSManagedObject]()
+        
+        let fetchedResults = managedContext!.executeFetchRequest(fetchRequest!, error: &error) as [NSManagedObject]?
+        
+        
+        if var results = fetchedResults
+        {
+            return results
+            
+        }
+        else
+        {
+            println("Could not fetch \(error), \(error!.userInfo)")
+            
+            return []
+        }
+        
+    }
+    
+    // Calculate commission
+    func deductCommision(amount: Double) -> Double
+    {
+        var newAmount = validatePrice(amount * (1 - CommissionRate)) - CommissionFix
+        
+        return validatePrice(newAmount)
     }
     
     // delegate
@@ -182,6 +248,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         var Error: NSError?
         let data = NSKeyedArchiver.archivedDataWithRootObject(BusyMsg)
         self.partyTime.sendData(data, toPeers: [self.orderedItemsPeerID[index!]], withMode: MCSessionSendDataMode.Reliable, error: &Error)
+        
+        showMsg("Message has been sent", msg:"")
         println("Sending msg to: \(self.orderedItemsPeerID[index!])")
     }
     
@@ -205,7 +273,9 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
             {
                 let info = item.componentsSeparatedByString(":")
 
-                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", table:table.toInt()!, customer: name)
+//                let item = OrderItem(name: info[0], quantity: info[1].toInt()!, size: "Regular", table:table.toInt()!, customer: name)
+                
+                let item = OrderItem(name: info[0], table: table.toInt()!, customer: name, info: info[1])
                 self.orderedItems.append(item)
                 self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
             }
@@ -213,7 +283,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         
         self.collectionView?.reloadData()
         audioPlayer.play()
-        self.totalAmount += amount
+        self.totalAmount += deductCommision(amount)
         
         // save amount
         NSUserDefaults.standardUserDefaults().setDouble(self.totalAmount, forKey: KeyTotalAmount)
@@ -260,7 +330,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         cell.delegate = self
         let item = orderedItems[indexPath.row] as OrderItem
 //        cell.setCellContents(item.name, quantity: item.quantity, table: item.table, method: item.method)
-        cell.setCellContents(item.name, quantity: item.quantity, size: item.size, table: item.table, customer: item.customer)
+//        cell.setCellContents(item.name, quantity: item.quantity, size: item.size, table: item.table, customer: item.customer)
+        cell.setCellContents(item.name, table: item.table, customer: item.customer, info: item.info)
         return cell
     }
     
@@ -282,5 +353,16 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
         return 30
+    }
+    
+    // Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "SalesVCSegue")
+        {
+            let salesVC = segue.destinationViewController as SalesVC
+            salesVC.sales = fetchData()
+        }
+        
     }
 }
