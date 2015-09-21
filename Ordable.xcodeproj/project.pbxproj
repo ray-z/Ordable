@@ -44,7 +44,7 @@
 		714926511A964DD700C00607 /* PLPartyTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPartyTime.m; path = CustomClasses/Multipeer/PLPartyTime.m; sourceTree = "<group>"; };
 		71499EC01ABAC4EB0098CF51 /* notification.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = notification.mp3; path = Sounds/notification.mp3; sourceTree = "<group>"; };
 		716F42A51A960E3F001829A6 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
-		71AC643F1A9394A2002E330A /* Ordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ordable.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71AC643F1A9394A2002E330A /* Ordable - Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ordable - Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AC64431A9394A2002E330A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71AC64441A9394A2002E330A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71AC64491A9394A2002E330A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		71AC64401A9394A2002E330A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				71AC643F1A9394A2002E330A /* Ordable.app */,
+				71AC643F1A9394A2002E330A /* Ordable - Server.app */,
 				71AC64541A9394A2002E330A /* OrdableTests.xctest */,
 			);
 			name = Products;
@@ -205,7 +205,7 @@
 			);
 			name = Ordable;
 			productName = Ordable;
-			productReference = 71AC643F1A9394A2002E330A /* Ordable.app */;
+			productReference = 71AC643F1A9394A2002E330A /* Ordable - Server.app */;
 			productType = "com.apple.product-type.application";
 		};
 		71AC64531A9394A2002E330A /* OrdableTests */ = {
@@ -359,6 +359,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lei Zeng (T88YF5PL92)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -379,6 +380,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Ordable - Server";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -402,6 +404,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lei Zeng (T88YF5PL92)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -415,6 +418,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "Ordable - Server";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -429,7 +433,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = Ordable;
+				PRODUCT_NAME = "Ordable - Server";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
@@ -443,7 +447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ordable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = Ordable;
+				PRODUCT_NAME = "Ordable - Server";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ordable/Ordable-Bridging-Header.h";
 			};
@@ -464,7 +468,7 @@
 				INFOPLIST_FILE = OrdableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ordable.app/Ordable";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ordable - Server.app/Ordable - Server";
 			};
 			name = Debug;
 		};
@@ -479,7 +483,7 @@
 				INFOPLIST_FILE = OrdableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ordable.app/Ordable";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ordable - Server.app/Ordable - Server";
 			};
 			name = Release;
 		};

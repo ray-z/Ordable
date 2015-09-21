@@ -49,16 +49,16 @@ class SalesVC: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let sale = self.sales[indexPath.row]
-        var date = sale.valueForKey("date") as String
-        var amount = sale.valueForKey("amount") as Double
+        var date = sale.valueForKey("date") as! String
+        var amount = sale.valueForKey("amount") as! Double
         
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         
         cell.detailTextLabel?.textColor = UIColor.blackColor()
         
         cell.textLabel?.text = date
-        cell.detailTextLabel?.text = NSString(format:"£ %.2f", amount)
+        cell.detailTextLabel?.text = String(format:"£ %.2f", amount)
         
         return cell
 

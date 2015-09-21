@@ -20,11 +20,11 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     var orderedItemsPeerID = [MCPeerID]()
 
     var totalAmount = 0.00
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
     // P2P
     let advertisedName = "Ordable-Server"
-    let advertiser: MCNearbyServiceAdvertiser?
+    var advertiser: MCNearbyServiceAdvertiser?
     let ServerPeerID = "Ordable-Server"
     let partyTime: PLPartyTime = PLPartyTime(serviceType: "Ordable-Server")
     
@@ -33,12 +33,13 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     var audioPlayer = AVAudioPlayer()
     
     // UI
-    @IBOutlet weak var btnTotalAmount: UIBarButtonItem!
+    @IBOutlet var btnTotalAmount: UIBarButtonItem?
     
     // core data
     var managedContext: NSManagedObjectContext?
     var fetchRequest: NSFetchRequest?
     var error: NSError?
+    
     
     override func viewDidLoad()
     {
@@ -55,8 +56,8 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
         
         // total amount button
-        btnTotalAmount.tintColor = UIColor.blackColor()
-        //btnTotalAmount.enabled = false
+        btnTotalAmount!.tintColor = UIColor.blackColor()
+
         
 //        // fake item for testing
 //        let i1 = OrderItem(name: "English Breakfast Tea", quantity: 1, size: "Small", customer: "Ray")
@@ -118,6 +119,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         // Dispose of any resources that can be recreated.
     }
     
+    
     // show message
     func showMsg(title: String, msg: String)
     {
@@ -139,13 +141,13 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     func readTotalAmount()
     {
         // read total amount
-        self.totalAmount = NSUserDefaults.standardUserDefaults().valueForKey(KeyTotalAmount) as Double
+        self.totalAmount = NSUserDefaults.standardUserDefaults().valueForKey(KeyTotalAmount) as! Double
         updateBtnTotalAmount()
     }
     
     func updateBtnTotalAmount()
     {
-        btnTotalAmount.title = NSString(format:"Total: £ %.2f", self.totalAmount)
+        btnTotalAmount!.title = String(format:"Total: £ %.2f", self.totalAmount)
     }
     
     func showAlert(index:Int)
@@ -194,7 +196,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         let entity =  NSEntityDescription.entityForName("Sale", inManagedObjectContext: self.managedContext!)
         
-        let newSale = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext) as Sale
+        let newSale = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext) as! Sale
         newSale.amount = amount
         newSale.date = date
         
@@ -210,7 +212,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
 //        var sales = [NSManagedObject]()
         
-        let fetchedResults = managedContext!.executeFetchRequest(fetchRequest!, error: &error) as [NSManagedObject]?
+        let fetchedResults = managedContext!.executeFetchRequest(fetchRequest!, error: &error) as! [NSManagedObject]?
         
         
         if var results = fetchedResults
@@ -258,12 +260,12 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         println("Getting data from \(peerID)")
         
-        let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as NSDictionary
+        let orderInfo = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSDictionary
         
-        let table = orderInfo.valueForKey("table") as String
-        let name = orderInfo.valueForKey("name") as String
-        let itemsInfo = orderInfo.valueForKey("itemsInfo") as String
-        let amount = (orderInfo.valueForKey("amount") as NSString).doubleValue
+        let table = orderInfo.valueForKey("table") as! String
+        let name = orderInfo.valueForKey("name") as! String
+        let itemsInfo = orderInfo.valueForKey("itemsInfo") as! String
+        let amount = (orderInfo.valueForKey("amount") as! NSString).doubleValue
         
         let items = itemsInfo.componentsSeparatedByString("---")
         for item in items
@@ -277,7 +279,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
                 
                 let item = OrderItem(name: info[0], table: table.toInt()!, customer: name, info: info[1])
                 self.orderedItems.append(item)
-                self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as MCPeerID)
+                self.orderedItemsPeerID.append(orderInfo.valueForKey("MCPeerID") as! MCPeerID)
             }
         }
         
@@ -326,7 +328,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(OrderCellViewIdentifier, forIndexPath: indexPath) as OrderCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(OrderCellViewIdentifier, forIndexPath: indexPath) as! OrderCell
         cell.delegate = self
         let item = orderedItems[indexPath.row] as OrderItem
 //        cell.setCellContents(item.name, quantity: item.quantity, table: item.table, method: item.method)
@@ -335,7 +337,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
         let cvSize = collectionView.frame.size
         
@@ -360,7 +362,7 @@ class OrderVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, O
     {
         if(segue.identifier == "SalesVCSegue")
         {
-            let salesVC = segue.destinationViewController as SalesVC
+            let salesVC = segue.destinationViewController as! SalesVC
             salesVC.sales = fetchData()
         }
         
